@@ -1,17 +1,14 @@
 package com.example.consumer.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-// 3.3 业务层：使用RestTemplate调用服务
-@Service
-public class ConsumerService {
+// 3.3 业务层：使用FeignClient调用服务
+// 3.4 注册子模块名称
+@FeignClient(value = "service-provider")
+public interface ConsumerService {
 
-    @Autowired
-    private RestTemplate restTemplate;
-
-    public String getName(){
-        return restTemplate.getForObject("http://service-provider/provider/getName",String.class);
-    }
+    // 3.5 接口访问地址
+    @RequestMapping("/provider/getName")
+    String getName();
 }
