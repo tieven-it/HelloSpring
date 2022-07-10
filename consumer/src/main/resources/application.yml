@@ -1,0 +1,13 @@
+# 3.2 添加以下配置
+server:
+  # 端口
+  port: 8763
+spring:
+  application:
+    # 服务名称
+    name: service-consumer
+eureka:
+  client:
+    service-url:
+      #服务注册地址
+      defaultZone: http://localhost:8761/eureka/
